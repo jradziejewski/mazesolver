@@ -2,7 +2,7 @@ from graphics import Point, Line
 
 
 class Cell:
-    def __init__(self, win):
+    def __init__(self, win=None):
         self._x1 = None
         self._y1 = None
         self._x2 = None

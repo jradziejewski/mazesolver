@@ -11,7 +11,7 @@ class Maze:
         num_cols,
         cell_size_x,
         cell_size_y,
-        win,
+        win=None,
     ):
         self._x1 = x1
         self._y1 = y1
@@ -25,17 +25,19 @@ class Maze:
         self._create_cells()
 
     def _create_cells(self):
-        for _ in range(0, self.num_rows):
+        for _ in range(0, self.num_cols):
             row = []
-            for _ in range(0, self.num_cols):
+            for _ in range(0, self.num_rows):
                 row.append(Cell(self.__win))
             self._cells.append(row)
 
-        for i in range(0, self.num_rows):
-            for j in range(0, self.num_cols):
+        for i in range(0, self.num_cols):
+            for j in range(0, self.num_rows):
                 self._draw_cell(i, j)
 
     def _draw_cell(self, i, j):
+        if self.__win is None:
+            return
         p1 = Point(
             self._x1 + i * self._cell_size_x,
             self._y1 + j * self._cell_size_y
