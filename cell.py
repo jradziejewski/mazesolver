@@ -26,20 +26,34 @@ class Cell:
             self.__window.draw_line(line, "red")
 
     def draw(self, p1, p2):
+        if self.__window is None:
+            return
+
         self._x1 = p1.x
         self._y1 = p1.y
         self._x2 = p2.x
         self._y2 = p2.y
 
+        line = Line(p1, Point(p1.x, p2.y))
         if self.has_left_wall:
-            line = Line(p1, Point(p1.x, p2.y))
             self.__window.draw_line(line)
+        else:
+            self.__window.draw_line(line, "black")
+
+        line = Line(Point(p2.x, p1.y), p2)
         if self.has_right_wall:
-            line = Line(Point(p2.x, p1.y), p2)
             self.__window.draw_line(line)
+        else:
+            self.__window.draw_line(line, "black")
+
+        line = Line(p1, Point(p2.x, p1.y))
         if self.has_top_wall:
-            line = Line(p1, Point(p2.x, p1.y))
             self.__window.draw_line(line)
+        else:
+            self.__window.draw_line(line, "black")
+
+        line = Line(Point(p1.x, p2.y), p2)
         if self.has_bottom_wall:
-            line = Line(Point(p1.x, p2.y), p2)
             self.__window.draw_line(line)
+        else:
+            self.__window.draw_line(line, "black")
