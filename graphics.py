@@ -57,6 +57,17 @@ class Cell:
         self.has_top_wall = True
         self.has_bottom_wall = True
 
+    def draw_move(self, to_cell, undo=False):
+        self_center = Point((self.__x1 + self.__x2) / 2, (self.__y1 + self.__y2) / 2)
+        to_center = Point(
+            (to_cell.__x1 + to_cell.__x2) / 2, (to_cell.__y1 + to_cell.__y2) / 2
+        )
+        line = Line(self_center, to_center)
+        if undo:
+            self.__window.draw_line(line, "gray")
+        else:
+            self.__window.draw_line(line, "red")
+
     def draw(self, p1, p2):
         self.__x1 = p1.x
         self.__y1 = p1.y
